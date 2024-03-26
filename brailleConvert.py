@@ -29,7 +29,7 @@ def match_char(pixels):
 
 def prep_image(name, size):
     og = Image.open(name)
-    gray = og.convert('L', dither=Image.Dither.FLOYDSTEINBERG)
+    gray = og.convert('L')
     gray = gray.resize((int(gray.width * size), int(gray.height * size)), Image.Resampling.LANCZOS)
     avg_color = np.sum(gray) / (gray.width * gray.height)
     bw_func = lambda x: 255 if x > avg_color else 0

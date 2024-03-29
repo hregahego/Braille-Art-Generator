@@ -120,39 +120,3 @@ def generate_edges(coords, x_count, y_count, invert):
         lines.append(line)
     return lines
 
-
-
-
-
-
-def match(x):
-    return True if x == '0' else False
-
-def search(arr, start, condition):
-    savedVisits = set()
-    visited = deque()
-    visited.append(start)
-    while len(visited) != 0:
-        cur = visited.pop()
-        savedVisits.add(cur)
-        left = (cur[0], max(cur[1]-1, 0))
-        right = (cur[0], min(cur[1]+1, len(arr[0])-1))
-        up = (max(cur[0]-1, 0), cur[1])
-        down = (min(cur[0]+1, len(arr)-1), cur[1])
-        if match(arr[left[0]][left[1]]) and left not in savedVisits:
-            visited.append(left)
-            savedVisits.add(left)
-
-        if match(arr[right[0]][right[1]]) and right not in savedVisits:
-            visited.append(right)
-            savedVisits.add(right)
-
-        if match(arr[up[0]][up[1]]) and up not in savedVisits:
-            visited.append(up)
-            savedVisits.add(up)
-
-        if match(arr[down[0]][down[1]]) and down not in savedVisits:
-            visited.append(down)
-            savedVisits.add(down)
-    return savedVisits
-
